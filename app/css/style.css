@@ -1,0 +1,44 @@
+body {
+    background: #e8e8e8;
+}
+
+.login > div {
+    text-align: center;
+    margin-top: 50px;
+}
+
+textarea {
+    resize: vertical !important;
+}
+
+.row.note {
+    margin-top: 20px;
+}
+
+header {
+    background: #4FC3F7;
+    height: 50px !important;
+}
+
+header span {
+    line-height: 50px;
+}
+
+header button {
+    margin-top: 7.5px;
+}
+
+header .user {
+    float: right;
+    padding-right: 20px;
+}
+
+header .user span{
+    margin-right: 5px;
+}
+
+
+header .title {
+    margin-left: 20px;
+    font-size: 20px;
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="NoteAPP">
+<head>
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>NoteAPP</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div ng-view></div>
+
+<script src="bower_components/jquery/dist/jquery.min.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
+<script src="bower_components/angular-resource/angular-resource.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="bower_components/satellizer/dist/satellizer.min.js"></script>
+
+<script src="app.module.js"></script>
+<script src="app.config.js"></script>
+
+<script src="login/login.module.js"></script>
+<script src="login/login.controller.js"></script>
+
+<script src="notes/notes.module.js"></script>
+<script src="notes/notes.controller.js"></script>
+<script src="notes/notes.service.js"></script>
+
+</body>
+</html>
