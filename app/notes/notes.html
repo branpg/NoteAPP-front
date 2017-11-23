@@ -4,6 +4,7 @@
     </div>
     <span class="title">miAplicacionDeNotas = new NoteAPP</span>
 </header>
+<input type="text" ng-model="nc.search" class="form-control" placeholder="Buscar" ng-change="nc.refresh()">
 <div class="row">
     <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
         <div class="row note">
@@ -16,15 +17,60 @@
                 </div>
             </div>
         </div>
-        <div class="row note" ng-repeat="note in nc.notes">
+        <div class="row">STICKY NOTES</div>
+        <div class="row note {{note.color+'Note'}}" ng-repeat="note in nc.notes">
             <input type="text" ng-model="note.title" class="form-control" placeholder="Título">
+            <code class="{{note.color+'Note'}}">Color: {{note.color}}</code>
             <textarea class="form-control" rows="3" ng-model="note.description" placeholder="Descripción"></textarea>
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
                     <button ng-click="nc.updateNote(note)" class="btn btn-success">Guardar</button>
                 </div>
                 <div class="btn-group">
+                    <button ng-click="nc.stickyNote(note)" class="btn btn-primary">Sticky</button>
+                </div>
+                <div class="btn-group">
                     <button ng-click="nc.deleteNote(note)" class="btn btn-danger">Borrar</button>
+                </div>
+            </div>
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button ng-click="nc.changeNoteColor(note, 'red')" class="btn btn-danger">Rojo</button>
+                </div>
+                <div class="btn-group">
+                    <button ng-click="nc.changeNoteColor(note, 'green')" class="btn btn-success">Verde</button>
+                </div>
+                <div class="btn-group">
+                    <button ng-click="nc.changeNoteColor(note, 'blue')" class="btn btn-primary">Azul</button>
+                </div>
+            </div>
+        </div>
+        <BR>
+        <div class="row">NORMAL NOTES</div>
+        <div class="row note {{note.color+'Note'}}" ng-repeat="note in nc.notes">
+            <input type="text" ng-model="note.title" class="form-control" placeholder="Título">
+            <code class="{{note.color+'Note'}}">Color: {{note.color}}</code>
+            <textarea class="form-control" rows="3" ng-model="note.description" placeholder="Descripción"></textarea>
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button ng-click="nc.updateNote(note)" class="btn btn-success">Guardar</button>
+                </div>
+                <div class="btn-group">
+                    <button ng-click="nc.stickyNote(note)" class="btn btn-primary">Sticky</button>
+                </div>
+                <div class="btn-group">
+                    <button ng-click="nc.deleteNote(note)" class="btn btn-danger">Borrar</button>
+                </div>
+            </div>
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button ng-click="nc.changeNoteColor(note, 'red')" class="btn btn-danger">Rojo</button>
+                </div>
+                <div class="btn-group">
+                    <button ng-click="nc.changeNoteColor(note, 'green')" class="btn btn-success">Verde</button>
+                </div>
+                <div class="btn-group">
+                    <button ng-click="nc.changeNoteColor(note, 'blue')" class="btn btn-primary">Azul</button>
                 </div>
             </div>
         </div>

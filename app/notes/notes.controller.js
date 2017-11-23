@@ -9,7 +9,16 @@ function NotesController($auth, $location, NotesService) {
     }
 
     vm.refresh = function () {
-        NotesService.query({}, function (data) {
+        var query = {};
+        if (vm.search) {
+            query.search = vm.search;
+        }
+        query.sticky = true;
+        NotesService.query(query, function (data) {
+            vm.stickyNotes = data;
+        });
+        query.sticky = false;
+        NotesService.query(query, function (data) {
             vm.notes = data;
         });
     };
@@ -34,7 +43,23 @@ function NotesController($auth, $location, NotesService) {
         });
     };
 
-    this.logout = function () {
+    vm.stickyNote = function (note) {
+        note.sticky = !note.sticky;
+        NotesService.update({idN: note._id} ,note, function (data) {
+            console.log(data);
+            vm.refresh();
+        });
+    };
+
+    vm.changeNoteColor = function (note, color) {
+        note.color = color;
+        NotesService.update({idN: note._id} ,note, function (data) {
+            console.log(data);
+            vm.refresh();
+        });
+    };
+
+    vm.logout = function () {
         $auth.logout()
             .then(function () {
                 $location.path('/login');

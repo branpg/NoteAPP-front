@@ -42,3 +42,20 @@ header .title {
     margin-left: 20px;
     font-size: 20px;
 }
+
+/* DEMO PROPOSES ONLY */
+
+code.redNote {
+    background: red;
+    color: black;
+}
+
+code.greenNote {
+    background: green;
+    color: black;
+}
+
+code.blueNote {
+    background: blue;
+    color: white;
+}
