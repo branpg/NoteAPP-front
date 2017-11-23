@@ -8,6 +8,8 @@ function NotesController($auth, $location, NotesService) {
         $location.path('/login');
     }
 
+    vm.newListLine = "";
+
     vm.refresh = function () {
         var query = {};
         if (vm.search) {
@@ -55,6 +57,35 @@ function NotesController($auth, $location, NotesService) {
         note.color = color;
         NotesService.update({idN: note._id} ,note, function (data) {
             console.log(data);
+            vm.refresh();
+        });
+    };
+
+    vm.changeNoteType = function (note) {
+        note.isList = !note.isList;
+        NotesService.update({idN: note._id} ,note, function (data) {
+            console.log(data);
+            vm.refresh();
+        });
+    };
+
+    vm.addListLine = function (note) {
+        note.list.push({
+            'checked': false,
+            'value': vm.newListLine
+        });
+        NotesService.update({idN: note._id} ,note, function (data) {
+            console.log(data);
+            vm.newListLine = "";
+            vm.refresh();
+        });
+    };
+
+    vm.deleteListLine = function(note, index) {
+        note.list.splice(index, 1);
+        NotesService.update({idN: note._id} ,note, function (data) {
+            console.log(data);
+            vm.newListLine = "";
             vm.refresh();
         });
     };

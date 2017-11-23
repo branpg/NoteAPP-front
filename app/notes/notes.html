@@ -2,7 +2,7 @@
     <div class="user">
         <button ng-click="nc.logout()" class="btn btn-primary">Cerrar sesión</button>
     </div>
-    <span class="title">miAplicacionDeNotas = new NoteAPP</span>
+    <span class="title">NoteAPP</span>
 </header>
 <input type="text" ng-model="nc.search" class="form-control" placeholder="Buscar" ng-change="nc.refresh()">
 <div class="row">
@@ -18,10 +18,30 @@
             </div>
         </div>
         <div class="row">STICKY NOTES</div>
-        <div class="row note {{note.color+'Note'}}" ng-repeat="note in nc.notes">
+        <div class="row note {{note.color+'Note'}}" ng-repeat="note in nc.stickyNotes">
             <input type="text" ng-model="note.title" class="form-control" placeholder="Título">
             <code class="{{note.color+'Note'}}">Color: {{note.color}}</code>
-            <textarea class="form-control" rows="3" ng-model="note.description" placeholder="Descripción"></textarea>
+            <div ng-if="note.isList" ng-repeat="listElement in note.list">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input type="checkbox" ng-model="listElement.checked">
+                    </span>
+                    <input type="text" class="form-control" ng-model="listElement.value">
+                    <span class="input-group-btn">
+                        <button ng-click="nc.deleteListLine(note, $index)" class="btn btn-secondary" type="button">x</button>
+                    </span>
+                </div>
+            </div>
+            <input ng-if="note.isList" type="text" class="form-control" ng-model="nc.newListLine"
+                   ng-keyup="$event.keyCode == 13 ? nc.addListLine(note) : null" ng-blur="nc.addListLine(note)">
+            <textarea ng-if="!note.isList" class="form-control" rows="3" ng-model="note.description"
+                      placeholder="Descripción"></textarea>
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button ng-click="nc.changeNoteType(note)" class="btn btn-primary">Transformar en lista/nota
+                    </button>
+                </div>
+            </div>
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
                     <button ng-click="nc.updateNote(note)" class="btn btn-success">Guardar</button>
@@ -45,12 +65,32 @@
                 </div>
             </div>
         </div>
-        <BR>
+        <br>
         <div class="row">NORMAL NOTES</div>
         <div class="row note {{note.color+'Note'}}" ng-repeat="note in nc.notes">
             <input type="text" ng-model="note.title" class="form-control" placeholder="Título">
             <code class="{{note.color+'Note'}}">Color: {{note.color}}</code>
-            <textarea class="form-control" rows="3" ng-model="note.description" placeholder="Descripción"></textarea>
+            <div ng-if="note.isList" ng-repeat="listElement in note.list">
+                <div class="input-group">
+                    <span class="input-group-addon">
+                        <input type="checkbox" ng-model="listElement.checked">
+                    </span>
+                    <input type="text" class="form-control" ng-model="listElement.value">
+                    <span class="input-group-btn">
+                        <button ng-click="nc.deleteListLine(note, $index)" class="btn btn-secondary" type="button">x</button>
+                    </span>
+                </div>
+            </div>
+            <input ng-if="note.isList" type="text" class="form-control" ng-model="nc.newListLine"
+                   ng-keyup="$event.keyCode == 13 ? nc.addListLine(note) : null" ng-blur="nc.addListLine(note)">
+            <textarea ng-if="!note.isList" class="form-control" rows="3" ng-model="note.description"
+                      placeholder="Descripción"></textarea>
+            <div class="btn-group btn-group-justified">
+                <div class="btn-group">
+                    <button ng-click="nc.changeNoteType(note)" class="btn btn-primary">Transformar en lista/nota
+                    </button>
+                </div>
+            </div>
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
                     <button ng-click="nc.updateNote(note)" class="btn btn-success">Guardar</button>

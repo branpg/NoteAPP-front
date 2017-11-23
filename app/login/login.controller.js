@@ -19,7 +19,7 @@ function LoginController($auth, $location) {
                 $location.path('/home');
             })
             .catch(function (response) {
-
+                vm.errors.login = response.data.message;
             });
 
     };
