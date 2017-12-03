@@ -19,6 +19,7 @@ function LoginController($auth, $location) {
                 $location.path('/home');
             })
             .catch(function (response) {
+                swal('', response.data.message, 'error');
                 vm.errors.login = response.data.message;
             });
 
@@ -44,21 +45,12 @@ function LoginController($auth, $location) {
                             $location.path('/home');
                         })
                         .catch(function (err) {
-
+                            swal('', err, 'error');
                         });
                 })
                 .catch(function (err) {
-                    if (err.data.errors.user) {
-                        vm.errors.user = err.data.errors.user;
-                        console.log(vm.errors);
-                    } else {
-                        delete vm.errors.name;
-                    }
-                    if (err.data.errors.email) {
-                        vm.errors.email = err.data.errors.email;
-                    } else {
-                        delete vm.errors.email;
-                    }
+                    console.log(err);
+                    swal('', err.data.message, 'error');
                 });
         }
     };
@@ -96,7 +88,7 @@ function LoginController($auth, $location) {
     };
 
     vm.emailValidate = function () {
-        if (!vm.name) {
+        if (!vm.email) {
             vm.errors.email = 'El correo electronico es obligatorio'
         } else {
             delete vm.errors.email;

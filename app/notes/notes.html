@@ -9,7 +9,8 @@
     <div class="col-xs-8 col-xs-offset-2 col-sm-6 col-sm-offset-3 col-md-6 col-md-offset-3 col-lg-6 col-lg-offset-3">
         <div class="row note">
             <input type="text" ng-model="nc.newNote.title" class="form-control" placeholder="Título">
-            <textarea class="form-control" rows="2" ng-model="nc.newNote.description"
+            <textarea class="form-control" ng-model="nc.newNote.description"
+                      msd-elastic
                       placeholder="Descripción"></textarea>
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
@@ -26,15 +27,15 @@
                     <span class="input-group-addon">
                         <input type="checkbox" ng-model="listElement.checked">
                     </span>
-                    <input type="text" class="form-control" ng-model="listElement.value">
+                    <textarea ng-trim="false" msd-elastic ng-keyup="$event.keyCode == 13 ? nc.addListLine(note, $index+1, false) : null"  rows="1" class="form-control" ng-model="listElement.value"></textarea>
                     <span class="input-group-btn">
                         <button ng-click="nc.deleteListLine(note, $index)" class="btn btn-secondary" type="button">x</button>
                     </span>
                 </div>
             </div>
             <input ng-if="note.isList" type="text" class="form-control" ng-model="nc.newListLine"
-                   ng-keyup="$event.keyCode == 13 ? nc.addListLine(note) : null" ng-blur="nc.addListLine(note)">
-            <textarea ng-if="!note.isList" class="form-control" rows="3" ng-model="note.description"
+                   ng-keyup="$event.keyCode == 13 ? nc.addListLine(note, note.list.length, true) : null" ng-blur="nc.addListLine(note)">
+            <textarea ng-if="!note.isList" class="form-control" msd-elastic rows="1" ng-model="note.description"
                       placeholder="Descripción"></textarea>
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">
@@ -83,7 +84,7 @@
             </div>
             <input ng-if="note.isList" type="text" class="form-control" ng-model="nc.newListLine"
                    ng-keyup="$event.keyCode == 13 ? nc.addListLine(note) : null" ng-blur="nc.addListLine(note)">
-            <textarea ng-if="!note.isList" class="form-control" rows="3" ng-model="note.description"
+            <textarea ng-if="!note.isList" class="form-control" msd-elastic ng-model="note.description"
                       placeholder="Descripción"></textarea>
             <div class="btn-group btn-group-justified">
                 <div class="btn-group">

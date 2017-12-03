@@ -9,6 +9,8 @@
     "angular-route": "1.5.11",
     "bootstrap": "^3.3.7",
     "angular-resource": "1.5.11",
-    "zxcvbn": "4.4.2"
+    "zxcvbn": "4.4.2",
+    "angular-elastic": "2.5.1",
+    "sweetalert2": "^7.0.6"
   }
 }

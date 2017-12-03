@@ -4,5 +4,6 @@ angular.module('NoteAPP', [
     'ngRoute',
     'satellizer',
     'NoteAPP.login',
-    'NoteAPP.notes'
+    'NoteAPP.notes',
+    'monospaced.elastic'
 ]);

@@ -26,7 +26,7 @@ function NotesController($auth, $location, NotesService) {
     };
 
     vm.updateNote = function (note) {
-        NotesService.update({idN: note._id} ,note, function (data) {
+        NotesService.update({idN: note._id}, note, function (data) {
             console.log(data);
         });
     };
@@ -47,7 +47,7 @@ function NotesController($auth, $location, NotesService) {
 
     vm.stickyNote = function (note) {
         note.sticky = !note.sticky;
-        NotesService.update({idN: note._id} ,note, function (data) {
+        NotesService.update({idN: note._id}, note, function (data) {
             console.log(data);
             vm.refresh();
         });
@@ -55,7 +55,7 @@ function NotesController($auth, $location, NotesService) {
 
     vm.changeNoteColor = function (note, color) {
         note.color = color;
-        NotesService.update({idN: note._id} ,note, function (data) {
+        NotesService.update({idN: note._id}, note, function (data) {
             console.log(data);
             vm.refresh();
         });
@@ -63,27 +63,37 @@ function NotesController($auth, $location, NotesService) {
 
     vm.changeNoteType = function (note) {
         note.isList = !note.isList;
-        NotesService.update({idN: note._id} ,note, function (data) {
+        NotesService.update({idN: note._id}, note, function (data) {
             console.log(data);
             vm.refresh();
         });
     };
 
-    vm.addListLine = function (note) {
-        note.list.push({
-            'checked': false,
-            'value': vm.newListLine
-        });
-        NotesService.update({idN: note._id} ,note, function (data) {
-            console.log(data);
+    vm.addListLine = function (note, index, isLineAtEnd) {
+        if (isLineAtEnd) {
+            note.list.splice(index, 0, {
+                'checked': false,
+                'value': vm.newListLine
+            });
             vm.newListLine = "";
+        } else {
+            note.list[index - 1].value = '-' + note.list[index - 1].value + '-';
+            var splitLine = note.list[index - 1].value.split(/\r?\n/);
+            console.log(splitLine[0].substr(1));
+            note.list[index - 1].value = splitLine[0].substr(1);
+            note.list.splice(index, 0, {
+                'checked': false,
+                'value': splitLine[1].slice(0, -1)
+            });
+        }
+        NotesService.update({idN: note._id}, note, function (data) {
             vm.refresh();
         });
     };
 
-    vm.deleteListLine = function(note, index) {
+    vm.deleteListLine = function (note, index) {
         note.list.splice(index, 1);
-        NotesService.update({idN: note._id} ,note, function (data) {
+        NotesService.update({idN: note._id}, note, function (data) {
             console.log(data);
             vm.newListLine = "";
             vm.refresh();

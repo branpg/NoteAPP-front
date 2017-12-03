@@ -8,7 +8,7 @@ body {
 }
 
 textarea {
-    resize: vertical !important;
+    resize: none !important;
 }
 
 .row.note {

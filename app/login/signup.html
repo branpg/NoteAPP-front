@@ -3,13 +3,13 @@
         <form ng-submit="lc.signup()" method="post" role="form" name="signupForm">
             <div class="form-group">
                 <label>Nombre de usuario*</label>
-                <input type="text" name="user" ng-model="lc.name" ng-pattern="/^[a-zA-Z0-9]*$/" class="form-control" placeholder="Introduce tu nombre de usuario">
-                <span class="formError" ng-show="signupForm.user.$error.pattern">El nombre solo puede contener caracteres alfanumericos sin espacios</span>
-                <span class="formError" ng-show="lc.errors.user">{{lc.errors.user}}</span>
+                <input type="text" ng-change="lc.nameValidate()" name="name" ng-model="lc.name" ng-pattern="/^[a-zA-Z0-9]+$/" class="form-control" placeholder="Introduce tu nombre de usuario">
+                <span class="formError" ng-show="signupForm.name.$error.pattern">El nombre solo puede contener caracteres alfanumericos sin espacios</span>
+                <span class="formError" ng-show="lc.errors.name">{{lc.errors.name}}</span>
             </div>
             <div class="form-group">
                 <label>Email*</label>
-                <input type="email" name="email" ng-model="lc.email" ng-model-options="{ updateOn: 'blur' }" class="form-control" placeholder="Introduce tu dirección de correo electrónico">
+                <input type="email" ng-change="lc.emailValidate()" name="email" ng-model="lc.email" ng-model-options="{ updateOn: 'blur' }" class="form-control" placeholder="Introduce tu dirección de correo electrónico">
                 <span class="formError" ng-show="lc.errors.email">{{lc.errors.email}}</span>
                 <span class="formError" ng-show="signupForm.email.$error.email">La dirección de correo electronico no es válida</span>
             </div>
