@@ -62,7 +62,7 @@ function LoginController($auth, $location) {
         } else {
             vm.passStrength = zxcvbn(vm.password).score;
             if (vm.passStrength <= 1){
-                vm.errors.password = 'La contraseña ha de ser mas segura';
+                vm.errors.password = 'La contraseña ha de ser más segura';
             } else {
                 delete vm.errors.password;
             }
@@ -89,7 +89,7 @@ function LoginController($auth, $location) {
 
     vm.emailValidate = function () {
         if (!vm.email) {
-            vm.errors.email = 'El correo electronico es obligatorio'
+            vm.errors.email = 'El correo electrónico es obligatorio'
         } else {
             delete vm.errors.email;
         }

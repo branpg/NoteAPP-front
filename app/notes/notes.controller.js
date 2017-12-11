@@ -2,7 +2,7 @@ angular
     .module('NoteAPP.notes')
     .controller('NotesController', NotesController);
 
-function NotesController($auth, $location, NotesService) {
+function NotesController($auth, $location, NotesService, TagsService) {
     var vm = this;
     if (!$auth.isAuthenticated()) {
         $location.path('/login');
@@ -15,6 +15,12 @@ function NotesController($auth, $location, NotesService) {
         if (vm.search) {
             query.search = vm.search;
         }
+        if (vm.color) {
+            query.color = vm.color;
+        }
+        if (vm.tag) {
+            query.tag = vm.tag;
+        }
         query.sticky = true;
         NotesService.query(query, function (data) {
             vm.stickyNotes = data;
@@ -23,12 +29,14 @@ function NotesController($auth, $location, NotesService) {
         NotesService.query(query, function (data) {
             vm.notes = data;
         });
+        vm.loadTags();
     };
 
     vm.updateNote = function (note) {
         NotesService.update({idN: note._id}, note, function (data) {
             console.log(data);
         });
+        vm.loadTags();
     };
 
     vm.createNote = function (note) {
@@ -98,6 +106,20 @@ function NotesController($auth, $location, NotesService) {
             vm.newListLine = "";
             vm.refresh();
         });
+    };
+
+    vm.loadTags = function () {
+        TagsService.query({},{}, function (data) {
+            vm.tags = data;
+        });
+    };
+
+    vm.getNoteType = function (note) {
+        if (!note.isList) {
+            return 'lista';
+        }else {
+            return 'nota'
+        }
     };
 
     vm.logout = function () {

@@ -5,5 +5,6 @@ angular.module('NoteAPP', [
     'satellizer',
     'NoteAPP.login',
     'NoteAPP.notes',
-    'monospaced.elastic'
+    'monospaced.elastic',
+    'ngTagsInput'
 ]);

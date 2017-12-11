@@ -4,7 +4,11 @@ body {
 
 .login > div {
     text-align: center;
-    margin-top: 50px;
+}
+
+.login > h1 {
+    font-size: x-large;
+    font-weight: bold;
 }
 
 textarea {
@@ -43,23 +47,97 @@ header .title {
     font-size: 20px;
 }
 
-/* DEMO PROPOSES ONLY */
-
-code.redNote {
-    background: red;
+.note, .note input, .note textarea, .note button, .note .input-group-addon,
+.note tags-input div, .note select {
     color: black;
+    border: 0;
 }
 
-code.greenNote {
+.redNote, .redNote input, .redNote textarea, .redNote .input-group-btn button,.redNote .input-group-addon,
+.redNote tags-input div, .redNote select {
+    background: lightcoral;
+}
+
+.greenNote, .greenNote input, .greenNote textarea, .greenNote .input-group-btn button,
+.greenNote .input-group-addon, .greenNote tags-input div, .greenNote select {
     background: green;
-    color: black;
 }
 
-code.blueNote {
-    background: blue;
-    color: white;
+.blueNote, .blueNote input, .blueNote textarea, .blueNote .input-group-btn button,
+.blueNote .input-group-addon, .blueNote tags-input div, .blueNote select {
+    background: #286090;
+}
+
+.input-group{
+    border-top: 1px solid black !important;
+}
+
+.newListElement {
+    border-top: 1px solid black !important;
+    border-bottom: 1px solid black !important;
+}
+
+.noteTitle {
+    font-weight: bold !important;
+}
+
+.note .input-group *, .note input, .note tags-input *,
+.note select, .note .btn-group *, .note textarea{
+    border-radius: 0;
+}
+
+.tags {
+    box-shadow: none !important;
 }
 
 .listElement .form-control{
     width: 96.5%;
+}
+
+tags-input {
+    border-bottom: 1px solid black !important;
+}
+
+tags-input .host {
+    margin: 0 !important;
+}
+
+.noneOpt {
+    background: white;
+}
+
+.redOpt {
+    background: lightcoral;
+}
+
+.greenOpt {
+    background: green;
+}
+
+.blueOpt {
+    background: #286090;
+}
+
+.noteDescription {
+    border-bottom: 1px solid black !important;
+    border-top: 1px solid black !important;
+
+}
+
+.tag-list * {
+    background: none !important;
+    border: none !important;
+    color: black;
+}
+
+.note select {
+    border-bottom: 1px solid black !important;
+}
+
+select::selection {
+    background: none;
+}
+
+.note input::placeholder {
+    color: white;
 }

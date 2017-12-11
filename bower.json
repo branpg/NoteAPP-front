@@ -11,6 +11,7 @@
     "angular-resource": "1.5.11",
     "zxcvbn": "4.4.2",
     "angular-elastic": "2.5.1",
-    "sweetalert2": "^7.0.6"
+    "sweetalert2": "^7.0.6",
+    "ng-tags-input": "^3.2.0"
   }
 }
